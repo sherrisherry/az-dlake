@@ -1,0 +1,66 @@
+{
+    "name": "SECren_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "ren-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "adsh",
+                "type": "String"
+            },
+            {
+                "name": "report",
+                "type": "String"
+            },
+            {
+                "name": "rfile",
+                "type": "String"
+            },
+            {
+                "name": "menucat",
+                "type": "String"
+            },
+            {
+                "name": "shortname",
+                "type": "String"
+            },
+            {
+                "name": "longname",
+                "type": "String"
+            },
+            {
+                "name": "roleuri",
+                "type": "String"
+            },
+            {
+                "name": "parentroleuri",
+                "type": "String"
+            },
+            {
+                "name": "parentreport",
+                "type": "String"
+            },
+            {
+                "name": "ultparentrpt",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

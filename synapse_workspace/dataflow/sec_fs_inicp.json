@@ -1,0 +1,126 @@
+{
+    "name": "sec_fs_inicp",
+    "properties": {
+        "type": "MappingDataFlow",
+        "typeProperties": {
+            "sources": [
+                {
+                    "dataset": {
+                        "referenceName": "SECsub_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "subsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECdim_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "dimsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECtag_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "tagsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECnum_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "numsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECtxt_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "txtsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECcal_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "calsrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECpre_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "presrc"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECren_src",
+                        "type": "DatasetReference"
+                    },
+                    "name": "rensrc"
+                }
+            ],
+            "sinks": [
+                {
+                    "dataset": {
+                        "referenceName": "SECsub",
+                        "type": "DatasetReference"
+                    },
+                    "name": "sub"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECdim",
+                        "type": "DatasetReference"
+                    },
+                    "name": "dim"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECtag",
+                        "type": "DatasetReference"
+                    },
+                    "name": "tag"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECnum",
+                        "type": "DatasetReference"
+                    },
+                    "name": "num"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECtxt",
+                        "type": "DatasetReference"
+                    },
+                    "name": "txt"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECcal",
+                        "type": "DatasetReference"
+                    },
+                    "name": "cal"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECpre",
+                        "type": "DatasetReference"
+                    },
+                    "name": "pre"
+                },
+                {
+                    "dataset": {
+                        "referenceName": "SECren",
+                        "type": "DatasetReference"
+                    },
+                    "name": "ren"
+                }
+            ],
+            "transformations": [],
+            "script": "parameters{\n\tsrc_dir_name as string\n}\nsource(output(\n\t\tadsh as string,\n\t\tcik as string,\n\t\tname as string,\n\t\tsic as string,\n\t\tcountryba as string,\n\t\tstprba as string,\n\t\tcityba as string,\n\t\tzipba as string,\n\t\tbas1 as string,\n\t\tbas2 as string,\n\t\tbaph as string,\n\t\tcountryma as string,\n\t\tstprma as string,\n\t\tcityma as string,\n\t\tzipma as string,\n\t\tmas1 as string,\n\t\tmas2 as string,\n\t\tcountryinc as string,\n\t\tstprinc as string,\n\t\tein as string,\n\t\tformer as string,\n\t\tchanged as string,\n\t\tafs as string,\n\t\twksi as string,\n\t\tfye as string,\n\t\tform as string,\n\t\tperiod as string,\n\t\tfy as string,\n\t\tfp as string,\n\t\tfiled as string,\n\t\taccepted as string,\n\t\tprevrpt as string,\n\t\tdetail as string,\n\t\tinstance as string,\n\t\tnciks as string,\n\t\taciks as string,\n\t\tpubfloatusd as string,\n\t\tfloatdate as string,\n\t\tfloataxis as string,\n\t\tfloatmems as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'sub-tsv'))]) ~> subsrc\nsource(output(\n\t\tdimhash as string,\n\t\tsegments as string,\n\t\tsegt as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'dim-tsv'))]) ~> dimsrc\nsource(output(\n\t\ttag as string,\n\t\tversion as string,\n\t\tcustom as string,\n\t\tabstract as string,\n\t\tdatatype as string,\n\t\tiord as string,\n\t\tcrdr as string,\n\t\ttlabel as string,\n\t\tdoc as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'tag-tsv'))]) ~> tagsrc\nsource(output(\n\t\tadsh as string,\n\t\ttag as string,\n\t\tversion as string,\n\t\tddate as string,\n\t\tqtrs as string,\n\t\tuom as string,\n\t\tdimh as string,\n\t\tiprx as string,\n\t\tvalue as string,\n\t\tfootnote as string,\n\t\tfootlen as string,\n\t\tdimn as string,\n\t\tcoreg as string,\n\t\tdurp as string,\n\t\tdatp as string,\n\t\tdcml as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'num-tsv'))]) ~> numsrc\nsource(output(\n\t\tadsh as string,\n\t\ttag as string,\n\t\tversion as string,\n\t\tddate as string,\n\t\tqtrs as string,\n\t\tiprx as string,\n\t\tlang as string,\n\t\tdcml as string,\n\t\tdurp as string,\n\t\tdatp as string,\n\t\tdimh as string,\n\t\tdimn as string,\n\t\tcoreg as string,\n\t\tescaped as string,\n\t\tsrclen as string,\n\t\ttxtlen as string,\n\t\tfootnote as string,\n\t\tfootlen as string,\n\t\tcontext as string,\n\t\tvalue as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'txt-tsv'))]) ~> txtsrc\nsource(output(\n\t\tadsh as string,\n\t\tgrp as string,\n\t\tarc as string,\n\t\tnegative as string,\n\t\tptag as string,\n\t\tpversion as string,\n\t\tctag as string,\n\t\tcversion as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'cal-tsv'))]) ~> calsrc\nsource(output(\n\t\tadsh as string,\n\t\treport as string,\n\t\tline as string,\n\t\tstmt as string,\n\t\tinpth as string,\n\t\ttag as string,\n\t\tversion as string,\n\t\tprole as string,\n\t\tplabel as string,\n\t\tnegating as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'pre-tsv'))]) ~> presrc\nsource(output(\n\t\tadsh as string,\n\t\treport as string,\n\t\trfile as string,\n\t\tmenucat as string,\n\t\tshortname as string,\n\t\tlongname as string,\n\t\troleuri as string,\n\t\tparentroleuri as string,\n\t\tparentreport as string,\n\t\tultparentrpt as string\n\t),\n\tallowSchemaDrift: false,\n\tvalidateSchema: true,\n\tpurgeFiles: true,\n\twildcardPaths:[(concatWS('/',$src_dir_name,'ren-tsv'))]) ~> rensrc\nsubsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string,\n\t\tColumn_21 as string,\n\t\tColumn_22 as string,\n\t\tColumn_23 as string,\n\t\tColumn_24 as string,\n\t\tColumn_25 as string,\n\t\tColumn_26 as string,\n\t\tColumn_27 as string,\n\t\tColumn_28 as string,\n\t\tColumn_29 as string,\n\t\tColumn_30 as string,\n\t\tColumn_31 as string,\n\t\tColumn_32 as string,\n\t\tColumn_33 as string,\n\t\tColumn_34 as string,\n\t\tColumn_35 as string,\n\t\tColumn_36 as string,\n\t\tColumn_37 as string,\n\t\tColumn_38 as string,\n\t\tColumn_39 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sub\ndimsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> dim\ntagsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> tag\nnumsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> num\ntxtsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> txt\ncalsrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> cal\npresrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> pre\nrensrc sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> ren"
+        }
+    }
+}

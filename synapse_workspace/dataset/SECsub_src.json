@@ -1,0 +1,186 @@
+{
+    "name": "SECsub_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "sub-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "adsh",
+                "type": "String"
+            },
+            {
+                "name": "cik",
+                "type": "String"
+            },
+            {
+                "name": "name",
+                "type": "String"
+            },
+            {
+                "name": "sic",
+                "type": "String"
+            },
+            {
+                "name": "countryba",
+                "type": "String"
+            },
+            {
+                "name": "stprba",
+                "type": "String"
+            },
+            {
+                "name": "cityba",
+                "type": "String"
+            },
+            {
+                "name": "zipba",
+                "type": "String"
+            },
+            {
+                "name": "bas1",
+                "type": "String"
+            },
+            {
+                "name": "bas2",
+                "type": "String"
+            },
+            {
+                "name": "baph",
+                "type": "String"
+            },
+            {
+                "name": "countryma",
+                "type": "String"
+            },
+            {
+                "name": "stprma",
+                "type": "String"
+            },
+            {
+                "name": "cityma",
+                "type": "String"
+            },
+            {
+                "name": "zipma",
+                "type": "String"
+            },
+            {
+                "name": "mas1",
+                "type": "String"
+            },
+            {
+                "name": "mas2",
+                "type": "String"
+            },
+            {
+                "name": "countryinc",
+                "type": "String"
+            },
+            {
+                "name": "stprinc",
+                "type": "String"
+            },
+            {
+                "name": "ein",
+                "type": "String"
+            },
+            {
+                "name": "former",
+                "type": "String"
+            },
+            {
+                "name": "changed",
+                "type": "String"
+            },
+            {
+                "name": "afs",
+                "type": "String"
+            },
+            {
+                "name": "wksi",
+                "type": "String"
+            },
+            {
+                "name": "fye",
+                "type": "String"
+            },
+            {
+                "name": "form",
+                "type": "String"
+            },
+            {
+                "name": "period",
+                "type": "String"
+            },
+            {
+                "name": "fy",
+                "type": "String"
+            },
+            {
+                "name": "fp",
+                "type": "String"
+            },
+            {
+                "name": "filed",
+                "type": "String"
+            },
+            {
+                "name": "accepted",
+                "type": "String"
+            },
+            {
+                "name": "prevrpt",
+                "type": "String"
+            },
+            {
+                "name": "detail",
+                "type": "String"
+            },
+            {
+                "name": "instance",
+                "type": "String"
+            },
+            {
+                "name": "nciks",
+                "type": "String"
+            },
+            {
+                "name": "aciks",
+                "type": "String"
+            },
+            {
+                "name": "pubfloatusd",
+                "type": "String"
+            },
+            {
+                "name": "floatdate",
+                "type": "String"
+            },
+            {
+                "name": "floataxis",
+                "type": "String"
+            },
+            {
+                "name": "floatmems",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

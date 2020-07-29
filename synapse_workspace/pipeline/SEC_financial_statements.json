@@ -1,0 +1,219 @@
+{
+    "name": "SEC_financial_statements",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get Cache Items",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "SEC_cache",
+                        "type": "DatasetReference"
+                    },
+                    "fieldList": [
+                        "itemName",
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobStorageReadSettings",
+                        "recursive": true
+                    },
+                    "formatSettings": {
+                        "type": "DelimitedTextReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Get Cache Folders",
+                "type": "Filter",
+                "dependsOn": [
+                    {
+                        "activity": "Get Cache Items",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get Cache Items').output.childItems",
+                        "type": "Expression"
+                    },
+                    "condition": {
+                        "value": "@equals(item().type, 'Folder')",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Each Folder",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get Cache Folders",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get Cache Folders').output.Value",
+                        "type": "Expression"
+                    },
+                    "isSequential": true,
+                    "activities": [
+                        {
+                            "name": "Check Sink",
+                            "type": "GetMetadata",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "dataset": {
+                                    "referenceName": "SECsub",
+                                    "type": "DatasetReference"
+                                },
+                                "fieldList": [
+                                    "exists"
+                                ],
+                                "storeSettings": {
+                                    "type": "AzureBlobFSReadSettings",
+                                    "recursive": true
+                                },
+                                "formatSettings": {
+                                    "type": "DelimitedTextReadSettings"
+                                }
+                            }
+                        },
+                        {
+                            "name": "Update or Initial",
+                            "description": "T: update\nF: initial",
+                            "type": "IfCondition",
+                            "dependsOn": [
+                                {
+                                    "activity": "Check Sink",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                {
+                                    "activity": "Set Current Cache Folder",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "expression": {
+                                    "value": "@activity('Check Sink').output.exists",
+                                    "type": "Expression"
+                                },
+                                "ifFalseActivities": [
+                                    {
+                                        "name": "sec_fs_inicp",
+                                        "type": "ExecuteDataFlow",
+                                        "dependsOn": [],
+                                        "policy": {
+                                            "timeout": "7.00:00:00",
+                                            "retry": 0,
+                                            "retryIntervalInSeconds": 30,
+                                            "secureOutput": false,
+                                            "secureInput": false
+                                        },
+                                        "userProperties": [],
+                                        "typeProperties": {
+                                            "dataflow": {
+                                                "referenceName": "sec_fs_inicp",
+                                                "type": "DataFlowReference",
+                                                "parameters": {
+                                                    "src_dir_name": {
+                                                        "value": "'@{variables('current_cache_folder')}'",
+                                                        "type": "Expression"
+                                                    }
+                                                }
+                                            },
+                                            "integrationRuntime": {
+                                                "referenceName": "AutoResolveIntegrationRuntime",
+                                                "type": "IntegrationRuntimeReference"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "ifTrueActivities": [
+                                    {
+                                        "name": "sec_fs_update",
+                                        "type": "ExecuteDataFlow",
+                                        "dependsOn": [],
+                                        "policy": {
+                                            "timeout": "7.00:00:00",
+                                            "retry": 0,
+                                            "retryIntervalInSeconds": 30,
+                                            "secureOutput": false,
+                                            "secureInput": false
+                                        },
+                                        "userProperties": [],
+                                        "typeProperties": {
+                                            "dataflow": {
+                                                "referenceName": "sec_fs_update",
+                                                "type": "DataFlowReference",
+                                                "parameters": {
+                                                    "src_dir_name": {
+                                                        "value": "'@{variables('current_cache_folder')}'",
+                                                        "type": "Expression"
+                                                    }
+                                                }
+                                            },
+                                            "integrationRuntime": {
+                                                "referenceName": "AutoResolveIntegrationRuntime",
+                                                "type": "IntegrationRuntimeReference"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "name": "Set Current Cache Folder",
+                            "type": "SetVariable",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "current_cache_folder",
+                                "value": {
+                                    "value": "@item().name",
+                                    "type": "Expression"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "variables": {
+            "current_cache_folder": {
+                "type": "String"
+            }
+        },
+        "annotations": []
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

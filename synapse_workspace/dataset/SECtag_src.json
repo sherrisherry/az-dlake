@@ -1,0 +1,62 @@
+{
+    "name": "SECtag_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "tag-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "tag",
+                "type": "String"
+            },
+            {
+                "name": "version",
+                "type": "String"
+            },
+            {
+                "name": "custom",
+                "type": "String"
+            },
+            {
+                "name": "abstract",
+                "type": "String"
+            },
+            {
+                "name": "datatype",
+                "type": "String"
+            },
+            {
+                "name": "iord",
+                "type": "String"
+            },
+            {
+                "name": "crdr",
+                "type": "String"
+            },
+            {
+                "name": "tlabel",
+                "type": "String"
+            },
+            {
+                "name": "doc",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

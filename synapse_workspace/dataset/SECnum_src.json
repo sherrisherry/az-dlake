@@ -1,0 +1,90 @@
+{
+    "name": "SECnum_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "num-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "adsh",
+                "type": "String"
+            },
+            {
+                "name": "tag",
+                "type": "String"
+            },
+            {
+                "name": "version",
+                "type": "String"
+            },
+            {
+                "name": "ddate",
+                "type": "String"
+            },
+            {
+                "name": "qtrs",
+                "type": "String"
+            },
+            {
+                "name": "uom",
+                "type": "String"
+            },
+            {
+                "name": "dimh",
+                "type": "String"
+            },
+            {
+                "name": "iprx",
+                "type": "String"
+            },
+            {
+                "name": "value",
+                "type": "String"
+            },
+            {
+                "name": "footnote",
+                "type": "String"
+            },
+            {
+                "name": "footlen",
+                "type": "String"
+            },
+            {
+                "name": "dimn",
+                "type": "String"
+            },
+            {
+                "name": "coreg",
+                "type": "String"
+            },
+            {
+                "name": "durp",
+                "type": "String"
+            },
+            {
+                "name": "datp",
+                "type": "String"
+            },
+            {
+                "name": "dcml",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

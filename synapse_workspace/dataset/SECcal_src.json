@@ -1,0 +1,58 @@
+{
+    "name": "SECcal_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "cal-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "adsh",
+                "type": "String"
+            },
+            {
+                "name": "grp",
+                "type": "String"
+            },
+            {
+                "name": "arc",
+                "type": "String"
+            },
+            {
+                "name": "negative",
+                "type": "String"
+            },
+            {
+                "name": "ptag",
+                "type": "String"
+            },
+            {
+                "name": "pversion",
+                "type": "String"
+            },
+            {
+                "name": "ctag",
+                "type": "String"
+            },
+            {
+                "name": "cversion",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

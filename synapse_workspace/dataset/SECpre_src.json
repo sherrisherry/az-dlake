@@ -1,0 +1,66 @@
+{
+    "name": "SECpre_src",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "cachepool",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobStorageLocation",
+                "fileName": "pre-tsv",
+                "folderPath": "2020q1_notes.zip",
+                "container": "cache-sec-fs"
+            },
+            "columnDelimiter": "\t",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+        },
+        "schema": [
+            {
+                "name": "adsh",
+                "type": "String"
+            },
+            {
+                "name": "report",
+                "type": "String"
+            },
+            {
+                "name": "line",
+                "type": "String"
+            },
+            {
+                "name": "stmt",
+                "type": "String"
+            },
+            {
+                "name": "inpth",
+                "type": "String"
+            },
+            {
+                "name": "tag",
+                "type": "String"
+            },
+            {
+                "name": "version",
+                "type": "String"
+            },
+            {
+                "name": "prole",
+                "type": "String"
+            },
+            {
+                "name": "plabel",
+                "type": "String"
+            },
+            {
+                "name": "negating",
+                "type": "String"
+            }
+        ]
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}
