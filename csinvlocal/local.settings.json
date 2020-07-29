@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "sourcepool": "connection string",
+    "cachepool": "...",
+    "AzureWebJobsStorage": "...",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}
