@@ -46,7 +46,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'sub-tsv'))]) ~> subneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'sub.tsv'))]) ~> subneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -98,7 +98,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'dim-tsv'))]) ~> dimneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'dim.tsv'))]) ~> dimneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -120,7 +120,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'tag-tsv'))]) ~> tagneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'tag.tsv'))]) ~> tagneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -155,7 +155,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'num-tsv'))]) ~> numneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'num.tsv'))]) ~> numneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -201,7 +201,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'txt-tsv'))]) ~> txtneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'txt.tsv'))]) ~> txtneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -239,7 +239,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'cal-tsv'))]) ~> calneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'cal.tsv'))]) ~> calneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -267,7 +267,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'pre-tsv'))]) ~> preneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'pre.tsv'))]) ~> preneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -297,7 +297,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'ren-tsv'))]) ~> renneo
+	wildcardPaths:[(concatWS('/',$src_dir_name,'ren.tsv'))]) ~> renneo
 source(output(
 		Column_1 as string,
 		Column_2 as string,
@@ -336,165 +336,35 @@ preneo, preori exists(adsh == Column_1,
 renneo, renori exists(adsh == Column_1,
 	negate:true,
 	broadcast: 'auto')~> newrens
-newsubs sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string,
-		Column_17 as string,
-		Column_18 as string,
-		Column_19 as string,
-		Column_20 as string,
-		Column_21 as string,
-		Column_22 as string,
-		Column_23 as string,
-		Column_24 as string,
-		Column_25 as string,
-		Column_26 as string,
-		Column_27 as string,
-		Column_28 as string,
-		Column_29 as string,
-		Column_30 as string,
-		Column_31 as string,
-		Column_32 as string,
-		Column_33 as string,
-		Column_34 as string,
-		Column_35 as string,
-		Column_36 as string,
-		Column_37 as string,
-		Column_38 as string,
-		Column_39 as string
-	),
-	allowSchemaDrift: true,
+newsubs sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> sub
-newdims sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string
-	),
-	allowSchemaDrift: true,
+newdims sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> dim
-newtags sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string
-	),
-	allowSchemaDrift: true,
+newtags sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> tag
-newnums sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string
-	),
-	allowSchemaDrift: true,
+newnums sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> num
-newtxts sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string,
-		Column_17 as string,
-		Column_18 as string,
-		Column_19 as string,
-		Column_20 as string
-	),
-	allowSchemaDrift: true,
+newtxts sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> txt
-newcals sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string
-	),
-	allowSchemaDrift: true,
+newcals sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> cal
-newpres sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string
-	),
-	allowSchemaDrift: true,
+newpres sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> pre
-newrens sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string
-	),
-	allowSchemaDrift: true,
+newrens sink(allowSchemaDrift: true,
 	validateSchema: false,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> ren

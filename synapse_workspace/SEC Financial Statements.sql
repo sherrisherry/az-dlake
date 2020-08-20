@@ -1,11 +1,11 @@
 create external table dim(
-    [dimh] varchar(34),
+    [dimhash] varchar(34),
     [segments] varchar(1024),
     [segt] bit
 )with(
     LOCATION='sec-fs/dim/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table tag(
@@ -21,7 +21,7 @@ create external table tag(
 )with(
     LOCATION='sec-fs/tag/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table sub(
@@ -68,7 +68,7 @@ create external table sub(
 )with(
     LOCATION='sec-fs/sub/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table num(
@@ -91,7 +91,7 @@ create external table num(
 )with(
     LOCATION='sec-fs/num/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table txt(
@@ -118,14 +118,14 @@ create external table txt(
 )with(
     LOCATION='sec-fs/txt/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table cal(
 [adsh] char(20),
 [grp] smallint,
 [arc] smallint,
-[negative] bit,
+[negative] smallint,
 [ptag] varchar(256),
 [pversion] varchar(20),
 [ctag] varchar(256),
@@ -133,7 +133,7 @@ create external table cal(
 )with(
     LOCATION='sec-fs/cal/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table pre(
@@ -150,7 +150,7 @@ create external table pre(
 )with(
     LOCATION='sec-fs/pre/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );
 
 create external table ren(
@@ -167,5 +167,5 @@ create external table ren(
 )with(
     LOCATION='sec-fs/ren/',
     DATA_SOURCE=defaultlake,
-    FILE_FORMAT=u8stin
+    FILE_FORMAT=u8tsv
 );

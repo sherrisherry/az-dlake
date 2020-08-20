@@ -12,18 +12,15 @@ WITH (
     LOCATION = '',
     CREDENTIAL = AzureStorageCredential
 );
-CREATE EXTERNAL FILE FORMAT u8stin
+CREATE EXTERNAL FILE FORMAT u8tsv
 WITH (
     FORMAT_TYPE = DelimitedText,
-    FORMAT_OPTIONS (FIELD_TERMINATOR = ',',
+    FORMAT_OPTIONS (FIELD_TERMINATOR = '\t',
     FIRST_ROW = 1,
     Encoding = 'UTF8')
 );
-CREATE EXTERNAL FILE FORMAT u8stin_cmp
-WITH (
-    FORMAT_TYPE = DelimitedText,
-    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.GzipCodec',
-    FORMAT_OPTIONS (FIELD_TERMINATOR = ',',
-    FIRST_ROW = 1,
-    Encoding = 'UTF8')
+CREATE EXTERNAL FILE FORMAT stparquet
+WITH (  
+    FORMAT_TYPE = PARQUET,
+    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'
 );

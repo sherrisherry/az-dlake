@@ -46,7 +46,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'sub-tsv'))]) ~> subsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'sub.tsv'))]) ~> subsrc
 source(output(
 		dimhash as string,
 		segments as string,
@@ -55,7 +55,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'dim-tsv'))]) ~> dimsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'dim.tsv'))]) ~> dimsrc
 source(output(
 		tag as string,
 		version as string,
@@ -70,7 +70,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'tag-tsv'))]) ~> tagsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'tag.tsv'))]) ~> tagsrc
 source(output(
 		adsh as string,
 		tag as string,
@@ -92,7 +92,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'num-tsv'))]) ~> numsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'num.tsv'))]) ~> numsrc
 source(output(
 		adsh as string,
 		tag as string,
@@ -118,7 +118,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'txt-tsv'))]) ~> txtsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'txt.tsv'))]) ~> txtsrc
 source(output(
 		adsh as string,
 		grp as string,
@@ -132,7 +132,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'cal-tsv'))]) ~> calsrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'cal.tsv'))]) ~> calsrc
 source(output(
 		adsh as string,
 		report as string,
@@ -148,7 +148,7 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'pre-tsv'))]) ~> presrc
+	wildcardPaths:[(concatWS('/',$src_dir_name,'pre.tsv'))]) ~> presrc
 source(output(
 		adsh as string,
 		report as string,
@@ -164,173 +164,43 @@ source(output(
 	allowSchemaDrift: false,
 	validateSchema: true,
 	purgeFiles: true,
-	wildcardPaths:[(concatWS('/',$src_dir_name,'ren-tsv'))]) ~> rensrc
-subsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string,
-		Column_17 as string,
-		Column_18 as string,
-		Column_19 as string,
-		Column_20 as string,
-		Column_21 as string,
-		Column_22 as string,
-		Column_23 as string,
-		Column_24 as string,
-		Column_25 as string,
-		Column_26 as string,
-		Column_27 as string,
-		Column_28 as string,
-		Column_29 as string,
-		Column_30 as string,
-		Column_31 as string,
-		Column_32 as string,
-		Column_33 as string,
-		Column_34 as string,
-		Column_35 as string,
-		Column_36 as string,
-		Column_37 as string,
-		Column_38 as string,
-		Column_39 as string
-	),
-	allowSchemaDrift: true,
+	wildcardPaths:[(concatWS('/',$src_dir_name,'ren.tsv'))]) ~> rensrc
+subsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> sub
-dimsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string
-	),
-	allowSchemaDrift: true,
+dimsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> dim
-tagsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string
-	),
-	allowSchemaDrift: true,
+tagsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> tag
-numsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string
-	),
-	allowSchemaDrift: true,
+numsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> num
-txtsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string,
-		Column_11 as string,
-		Column_12 as string,
-		Column_13 as string,
-		Column_14 as string,
-		Column_15 as string,
-		Column_16 as string,
-		Column_17 as string,
-		Column_18 as string,
-		Column_19 as string,
-		Column_20 as string
-	),
-	allowSchemaDrift: true,
+txtsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> txt
-calsrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string
-	),
-	allowSchemaDrift: true,
+calsrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> cal
-presrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string,
-		Column_10 as string
-	),
-	allowSchemaDrift: true,
+presrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,
 	skipDuplicateMapOutputs: true) ~> pre
-rensrc sink(input(
-		Column_1 as string,
-		Column_2 as string,
-		Column_3 as string,
-		Column_4 as string,
-		Column_5 as string,
-		Column_6 as string,
-		Column_7 as string,
-		Column_8 as string,
-		Column_9 as string
-	),
-	allowSchemaDrift: true,
+rensrc sink(allowSchemaDrift: true,
 	validateSchema: false,
 	truncate: true,
 	skipDuplicateMapInputs: true,

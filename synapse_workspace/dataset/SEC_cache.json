@@ -6,18 +6,13 @@
             "type": "LinkedServiceReference"
         },
         "annotations": [],
-        "type": "DelimitedText",
+        "type": "Binary",
         "typeProperties": {
             "location": {
                 "type": "AzureBlobStorageLocation",
                 "container": "cache-sec-fs"
-            },
-            "columnDelimiter": "\t",
-            "escapeChar": "\\",
-            "firstRowAsHeader": true,
-            "quoteChar": "\""
-        },
-        "schema": []
+            }
+        }
     },
-    "type": "Microsoft.Synapse/workspaces/datasets"
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

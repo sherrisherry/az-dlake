@@ -5,12 +5,15 @@
             "referenceName": "cachepool",
             "type": "LinkedServiceReference"
         },
+        "folder": {
+            "name": "SECsrc"
+        },
         "annotations": [],
         "type": "DelimitedText",
         "typeProperties": {
             "location": {
                 "type": "AzureBlobStorageLocation",
-                "fileName": "dim-tsv",
+                "fileName": "dim.tsv",
                 "folderPath": "2020q1_notes.zip",
                 "container": "cache-sec-fs"
             },
@@ -34,5 +37,5 @@
             }
         ]
     },
-    "type": "Microsoft.Synapse/workspaces/datasets"
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -2,8 +2,11 @@
     "name": "SECnum",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "dlake01-WorkspaceDefaultStorage",
+            "referenceName": "dlake01",
             "type": "LinkedServiceReference"
+        },
+        "folder": {
+            "name": "SEC"
         },
         "annotations": [],
         "type": "DelimitedText",
@@ -13,60 +16,13 @@
                 "folderPath": "num",
                 "fileSystem": "sec-fs"
             },
-            "columnDelimiter": ",",
+            "columnDelimiter": "\t",
+            "rowDelimiter": "\n",
             "escapeChar": "\\",
+            "firstRowAsHeader": false,
             "quoteChar": "\""
         },
-        "schema": [
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            },
-            {
-                "type": "String"
-            }
-        ]
+        "schema": []
     },
-    "type": "Microsoft.Synapse/workspaces/datasets"
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

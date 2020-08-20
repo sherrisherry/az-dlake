@@ -44,8 +44,8 @@ namespace SEC.ETL
                                 if(entry.Name.Split('.').Last().ToLower() == "tsv"){
                                     log.LogInformation($"Now processing {entry.FullName}");
                                     //Replace all NO digits, letters, or "-" by a "-" Azure storage is specific on valid characters
-                                    string valideName = Regex.Replace(entry.Name,@"[^a-zA-Z0-9\-]","-").ToLower();
-                                    valideName = $"{fpath}/{valideName}";
+                                    //string valideName = Regex.Replace(entry.Name,@"[^a-zA-Z0-9\-]","-").ToLower();
+                                    string valideName = $"{fpath}/{entry.Name}";
                                     
                                     CloudBlockBlob blockBlob = container.GetBlockBlobReference(valideName);
                                     using (var fileStream = entry.Open()){

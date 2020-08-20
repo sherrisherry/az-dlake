@@ -151,9 +151,9 @@
                                                     }
                                                 }
                                             },
-                                            "integrationRuntime": {
-                                                "referenceName": "AutoResolveIntegrationRuntime",
-                                                "type": "IntegrationRuntimeReference"
+                                            "compute": {
+                                                "coreCount": 8,
+                                                "computeType": "General"
                                             }
                                         }
                                     }
@@ -182,9 +182,9 @@
                                                     }
                                                 }
                                             },
-                                            "integrationRuntime": {
-                                                "referenceName": "AutoResolveIntegrationRuntime",
-                                                "type": "IntegrationRuntimeReference"
+                                            "compute": {
+                                                "coreCount": 8,
+                                                "computeType": "General"
                                             }
                                         }
                                     }
@@ -213,7 +213,8 @@
                 "type": "String"
             }
         },
-        "annotations": []
+        "annotations": [],
+        "lastPublishTime": "2020-08-20T03:52:03Z"
     },
-    "type": "Microsoft.Synapse/workspaces/pipelines"
+    "type": "Microsoft.DataFactory/factories/pipelines"
 }
